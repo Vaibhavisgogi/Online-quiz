@@ -16,7 +16,14 @@ const allowedOrigins = [
 ].filter(Boolean);
 
 app.use(cors({
-  origin: '*', // Allow all for now to debug, then we can restrict
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (origin.endsWith('.vercel.app') || origin.includes('localhost')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
