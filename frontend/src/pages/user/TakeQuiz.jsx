@@ -91,88 +91,88 @@ export default function TakeQuiz() {
            <ArrowLeft size={16} /> Exit Quiz
        </Link>
 
-       <div className="glass-panel animate-fade-in" style={{ padding: '2rem 3rem' }}>
-           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem' }}>
-               <h2 className="text-gradient" style={{ margin: 0 }}>{quiz.title}</h2>
-               <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent-blue)', padding: '0.5rem 1rem', borderRadius: '99px', fontWeight: 'bold' }}>
-                   Question {currentQuestionIndex + 1} of {quiz.questions.length}
-               </div>
-           </div>
+        <div className="glass-panel animate-fade-in take-quiz-panel" style={{ padding: '2rem 3rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+                <h2 className="text-gradient" style={{ margin: 0, fontSize: 'clamp(1.2rem, 5vw, 1.8rem)' }}>{quiz.title}</h2>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent-blue)', padding: '0.5rem 1rem', borderRadius: '99px', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                    Question {currentQuestionIndex + 1} of {quiz.questions.length}
+                </div>
+            </div>
 
-           {/* Progress Bar */}
-           <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.3)', borderRadius: '99px', marginBottom: '3rem', overflow: 'hidden' }}>
-               <div style={{ height: '100%', width: `${((currentQuestionIndex + 1) / quiz.questions.length) * 100}%`, background: 'var(--gradient-primary)', transition: 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }} />
-           </div>
+            {/* Progress Bar */}
+            <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.3)', borderRadius: '99px', marginBottom: '2rem', overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${((currentQuestionIndex + 1) / quiz.questions.length) * 100}%`, background: 'var(--gradient-primary)', transition: 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }} />
+            </div>
 
-           {/* Question Content */}
-           <div style={{ marginBottom: '3rem' }}>
-               <h3 style={{ fontSize: '1.5rem', lineHeight: 1.6, marginBottom: '2rem' }}>{currentQuestion.questionText}</h3>
-               
-               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                   {currentQuestion.options.map((option, idx) => {
-                       const isSelected = answers[currentQuestionIndex] === option;
-                       return (
-                           <div 
-                               key={idx}
-                               onClick={() => handleSelectOption(option)}
-                               style={{ 
-                                   display: 'flex', 
-                                   alignItems: 'center', 
-                                   gap: '1rem', 
-                                   padding: '1.25rem 1.5rem', 
-                                   background: isSelected ? 'rgba(139, 92, 246, 0.15)' : 'rgba(0,0,0,0.2)', 
-                                   border: `1px solid ${isSelected ? 'var(--accent-purple)' : 'var(--glass-border)'}`, 
-                                   borderRadius: '12px', 
-                                   cursor: 'pointer',
-                                   transition: 'all 0.2s ease',
-                                   transform: isSelected ? 'scale(1.02)' : 'scale(1)',
-                                   boxShadow: isSelected ? '0 4px 15px rgba(139, 92, 246, 0.15)' : 'none'
-                               }}
-                           >
-                               <div style={{ width: '24px', height: '24px', borderRadius: '50%', border: `2px solid ${isSelected ? 'var(--accent-purple)' : 'var(--text-secondary)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                   {isSelected && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-purple)' }} />}
-                               </div>
-                               <span style={{ fontSize: '1.1rem', color: isSelected ? 'white' : 'var(--text-secondary)' }}>{option}</span>
-                           </div>
-                       )
-                   })}
-               </div>
-           </div>
+            {/* Question Content */}
+            <div style={{ marginBottom: '2.5rem' }}>
+                <h3 style={{ fontSize: 'clamp(1.1rem, 4vw, 1.5rem)', lineHeight: 1.5, marginBottom: '2rem' }}>{currentQuestion.questionText}</h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    {currentQuestion.options.map((option, idx) => {
+                        const isSelected = answers[currentQuestionIndex] === option;
+                        return (
+                            <div 
+                                key={idx}
+                                onClick={() => handleSelectOption(option)}
+                                style={{ 
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    gap: '1rem', 
+                                    padding: '1rem 1.25rem', 
+                                    background: isSelected ? 'rgba(139, 92, 246, 0.15)' : 'rgba(0,0,0,0.2)', 
+                                    border: `1px solid ${isSelected ? 'var(--accent-purple)' : 'var(--glass-border)'}`, 
+                                    borderRadius: '12px', 
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    transform: isSelected ? 'scale(1.01)' : 'scale(1)',
+                                    boxShadow: isSelected ? '0 4px 15px rgba(139, 92, 246, 0.15)' : 'none'
+                                }}
+                            >
+                                <div style={{ width: '24px', height: '24px', flexShrink: 0, borderRadius: '50%', border: `2px solid ${isSelected ? 'var(--accent-purple)' : 'var(--text-secondary)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    {isSelected && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-purple)' }} />}
+                                </div>
+                                <span style={{ fontSize: '1rem', color: isSelected ? 'white' : 'var(--text-secondary)', wordBreak: 'break-word', lineHeight: 1.4 }}>{option}</span>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
 
-           {/* Navigation Controls */}
-           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem' }}>
-               <button 
-                   onClick={handlePrevious} 
-                   disabled={currentQuestionIndex === 0}
-                   className="btn-primary"
-                   style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', opacity: currentQuestionIndex === 0 ? 0.5 : 1 }}
-               >
-                   <ArrowLeft size={18} /> Previous
-               </button>
+            {/* Navigation Controls */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+                <button 
+                    onClick={handlePrevious} 
+                    disabled={currentQuestionIndex === 0}
+                    className="btn-primary"
+                    style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', opacity: currentQuestionIndex === 0 ? 0.5 : 1, flex: 1, justifyContent: 'center', minWidth: '120px' }}
+                >
+                    <ArrowLeft size={18} /> Previous
+                </button>
 
-               {currentQuestionIndex < quiz.questions.length - 1 ? (
-                   <button 
-                       onClick={handleNext}
-                       className="btn-primary"
-                       disabled={!answers[currentQuestionIndex]}
-                   >
-                       Next <ArrowRight size={18} />
-                   </button>
-               ) : (
-                   <button 
-                       onClick={handleSubmit}
-                       className="btn-primary"
-                       disabled={!allAnswered || isSubmitting}
-                       style={{ background: 'var(--gradient-secondary)' }}
-                   >
-                       {isSubmitting ? <div className="spinner"></div> : (
-                           <>Submit Quiz <CheckCircle size={18} /></>
-                       )}
-                   </button>
-               )}
-           </div>
-
-       </div>
+                {currentQuestionIndex < quiz.questions.length - 1 ? (
+                    <button 
+                        onClick={handleNext}
+                        className="btn-primary"
+                        disabled={!answers[currentQuestionIndex]}
+                        style={{ flex: 1, justifyContent: 'center', minWidth: '120px' }}
+                    >
+                        Next <ArrowRight size={18} />
+                    </button>
+                ) : (
+                    <button 
+                        onClick={handleSubmit}
+                        className="btn-primary"
+                        disabled={!allAnswered || isSubmitting}
+                        style={{ background: 'var(--gradient-secondary)', flex: 1, justifyContent: 'center', minWidth: '120px' }}
+                    >
+                        {isSubmitting ? <div className="spinner"></div> : (
+                            <>Submit Quiz <CheckCircle size={18} /></>
+                        )}
+                    </button>
+                )}
+            </div>
+        </div>
     </div>
   );
 }

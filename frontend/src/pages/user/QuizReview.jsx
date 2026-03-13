@@ -89,7 +89,7 @@ export default function QuizReview() {
                       gap: '0.75rem',
                       fontWeight: isUserSelection || isCorrectOption ? 'bold' : 'normal'
                     }}>
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: textColor }}></div>
+                      <div style={{ width: '8px', height: '8px', flexShrink: 0, borderRadius: '50%', background: textColor }}></div>
                       {opt}
                       {isUserSelection && <span style={{ fontSize: '0.7rem', opacity: 0.8 }}>(Your Answer)</span>}
                     </div>

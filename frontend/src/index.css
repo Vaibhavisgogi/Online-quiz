@@ -394,4 +394,17 @@ h6 {
     padding: 0.45rem 0.9rem !important;
     font-size: 0.82rem !important;
   }
+
+  .take-quiz-panel {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .glass-panel {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.5rem !important; }
+  h3 { font-size: 1.2rem !important; }
 }
