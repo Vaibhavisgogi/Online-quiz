@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, Users, Search, Mail, Shield, Trash2, MoreVertical, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Users, Search, Mail, Shield, Trash2, MoreVertical, CheckCircle2, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -35,8 +35,8 @@ export default function ManageUsers() {
   };
 
   const filteredUsers = users.filter(u => 
-    u.name.toLowerCase().includes(search.toLowerCase()) || 
-    u.email.toLowerCase().includes(search.toLowerCase())
+    (u.name?.toLowerCase() || '').includes(search.toLowerCase()) || 
+    (u.email?.toLowerCase() || '').includes(search.toLowerCase())
   );
 
   return (
@@ -108,9 +108,9 @@ export default function ManageUsers() {
                               {u.coins} 🪙
                           </td>
                           <td style={{ padding: '1.5rem 2rem' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: u.status === 'active' ? '#10b981' : '#f87171', fontSize: '0.9rem' }}>
-                                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: u.status === 'active' ? '#10b981' : '#f87171' }}></div>
-                                  {u.status.charAt(0).toUpperCase() + u.status.slice(1)}
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: (u.status || 'active') === 'active' ? '#10b981' : '#f87171', fontSize: '0.9rem' }}>
+                                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: (u.status || 'active') === 'active' ? '#10b981' : '#f87171' }}></div>
+                                  {(u.status || 'active').charAt(0).toUpperCase() + (u.status || 'active').slice(1)}
                               </div>
                           </td>
                           <td style={{ padding: '1.5rem 2rem' }}>
